@@ -28,6 +28,9 @@ let app;
     let jqueryScript;
     let jqueryScriptParent;
 
+    // test practice variables
+    let h1Delete;
+
     /**
      * Variable initialization in this function
      *
@@ -82,7 +85,27 @@ let app;
      */
     function Main()
     {
-        
+        // test practice
+
+        // delete example
+       h1Delete = document.getElementsByTagName('h1')[0];
+       // h1Delete.remove();
+
+       h1Delete.addEventListener("click", function(){
+           h1Delete.textContent = "Good Bye!";
+       });
+
+       h1Delete.addEventListener("mouseover", function(){
+        h1Delete.style.cssText = "color: red";
+        h1Delete.style.cursor = "pointer";
+    });
+
+    h1Delete.addEventListener("mouseout", function(){
+        h1Delete.style.color = "black";
+        h1Delete.style.cursor = "default";
+    });
+
+
     }
     
     
