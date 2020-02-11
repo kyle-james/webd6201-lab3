@@ -123,22 +123,7 @@ let app;
         // Contact Name Events
         $("#contactName").blur((e)=>
         {
-
             validateInput("#contactName",( $("#contactName").val().length < 2),"Contact Name is Too Short");
-
-
-            /* if( $("#contactName").val().length < 2)
-            {
-                $("#errorMessage").show();
-                $("#errorMessage").text("Contact Name is Too Short");
-                $("#contactName").select();
-                $("#contactName").css("border", "2px solid red");
-            }
-            else
-            {
-                $("#errorMessage").hide();
-                $("#contactName").css("border", "1px solid #ced4da");
-            } */
         });
 
         $("#contactName").focus((e)=>
@@ -150,18 +135,6 @@ let app;
         $("#emailAddress").blur((e)=>
         {
             validateInput("#emailAddress",($("#emailAddress").val().length < 8) || (!$("#emailAddress").val().includes("@")),"Invalid Email Address");
-            /* if( ($("#emailAddress").val().length < 8) || (!$("#emailAddress").val().includes("@")))
-            {
-                $("#errorMessage").show();
-                $("#errorMessage").text("Invalid Email Address");
-                $("#emailAddress").select();
-                $("#emailAddress").css("border", "2px solid red");
-            }
-            else
-            {
-                $("#errorMessage").hide();
-                $("#emailAddress").css("border", "1px solid #ced4da");
-            } */
         });
 
         $("#emailAddress").focus((e)=>
@@ -176,18 +149,6 @@ let app;
             let phoneNumber = $("#contactNumber").val();
 
             validateInput("#contactNumber",( !phonePattern.test(phoneNumber)),"Invalid Contact Number");
-            /* if( !phonePattern.test(phoneNumber))
-            {
-                $("#errorMessage").show();
-                $("#errorMessage").text("Invalid Contact Number");
-                $("#contactNumber").select();
-                $("#contactNumber").css("border", "2px solid red");
-            }
-            else
-            {
-                $("#errorMessage").hide();
-                $("#contactNumber").css("border", "1px solid #ced4da");
-            } */
         });
 
         $("#contactNumber").focus((e)=>
@@ -199,18 +160,6 @@ let app;
         $("#contactMessage").blur((e)=>
         {
             validateInput("#contactMessage",( $("#contactMessage").val().length < 2 ),"Contact Message Too Short");
-           /*  if( $("#contactMessage").val().length < 2 )
-            {
-                $("#errorMessage").show();
-                $("#errorMessage").text("Contact Message Too Short");
-                $("#contactMessage").select();
-                $("#contactMessage").css("border", "2px solid red");
-            }
-            else
-            {
-                $("#errorMessage").hide();
-                $("#contactMessage").css("border", "1px solid #ced4da");
-            } */
         });
 
         $("#contactMessage").focus((e)=>
