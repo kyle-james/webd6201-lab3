@@ -60,6 +60,12 @@ let app;
             case "projects":
                 DisplayProjectsContent();
                 break;
+            case "login":
+                DisplayLoginContent();
+                break;
+            case "register":
+                DisplayRegisterContent();
+                break;
             default:
                 console.error("Landed in a page that is not defined");
                 break;
@@ -75,25 +81,28 @@ let app;
         $("button").click(()=>{
             location.href = "projects.html";
         });
+
+        document.title = "WEBD6201 - Home";
     }
 
     function DisplayProductsContent()
     {
-
+        document.title = "WEBD6201 - Products";
     }
 
     function DisplayServicesContent()
     {
-
+        document.title = "WEBD6201 - Services";
     }
 
     function DisplayAboutContent()
     {
-
+        document.title = "WEBD6201 - About Us";
     }
 
     function DisplayContactContent()
     {
+        document.title = "WEBD6201 - Contact Us";
         function clearForm()
         {
             //document.getElementById("contactForm").reset();
@@ -212,7 +221,17 @@ let app;
 
     function DisplayProjectsContent()
     {
+        document.title = "WEBD6201 - Projects";
+    }
 
+    function DisplayLoginContent()
+    {
+        document.title = "WEBD6201 - Login";
+    }
+
+    function DisplayRegisterContent()
+    {
+        document.title = "WEBD6201 - Register";
     }
 
     /**
