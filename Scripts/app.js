@@ -31,14 +31,6 @@ let app;
     {
        PageSwitcher();
 
-        
-       
-       
-
-
-
-      
-
         Main();
     }
 
@@ -106,27 +98,137 @@ let app;
         {
             //document.getElementById("contactForm").reset();
             $("#contactForm")[0].reset();
+            $("#errorMessage").hide();
         }
 
-        $("#contactName").change((e)=>
+        function validateInput(selector, condition, errorMessage)
         {
-            if( $("#contactName").length < 8)
+            if(condition)
             {
-                console.log("Contact Name Too Short");
+                $("#errorMessage").show();
+                $("#errorMessage").text(errorMessage);
+                $(selector).select();
+                $(selector).css("border", "2px solid red");
             }
-            console.log("changed");
+            else
+            {
+                $("#errorMessage").hide();
+                $(selector).css("border", "1px solid #ced4da");
+            }
+        }
+
+        $("#errorMessage").hide();
+        $("#contactName").select();
+
+        // Contact Name Events
+        $("#contactName").blur((e)=>
+        {
+
+            validateInput("#contactName",( $("#contactName").val().length < 2),"Contact Name is Too Short");
+
+
+            /* if( $("#contactName").val().length < 2)
+            {
+                $("#errorMessage").show();
+                $("#errorMessage").text("Contact Name is Too Short");
+                $("#contactName").select();
+                $("#contactName").css("border", "2px solid red");
+            }
+            else
+            {
+                $("#errorMessage").hide();
+                $("#contactName").css("border", "1px solid #ced4da");
+            } */
         });
 
         $("#contactName").focus((e)=>
         {
             $("#contactName").select();
-            console.log("focus");
+        });
+
+        // Email Events
+        $("#emailAddress").blur((e)=>
+        {
+            validateInput("#emailAddress",($("#emailAddress").val().length < 8) || (!$("#emailAddress").val().includes("@")),"Invalid Email Address");
+            /* if( ($("#emailAddress").val().length < 8) || (!$("#emailAddress").val().includes("@")))
+            {
+                $("#errorMessage").show();
+                $("#errorMessage").text("Invalid Email Address");
+                $("#emailAddress").select();
+                $("#emailAddress").css("border", "2px solid red");
+            }
+            else
+            {
+                $("#errorMessage").hide();
+                $("#emailAddress").css("border", "1px solid #ced4da");
+            } */
+        });
+
+        $("#emailAddress").focus((e)=>
+        {
+            $("#emailAddress").select();
+        });
+
+        // Contact Number Events
+        $("#contactNumber").blur((e)=>
+        {
+            let phonePattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/
+            let phoneNumber = $("#contactNumber").val();
+
+            validateInput("#contactNumber",( !phonePattern.test(phoneNumber)),"Invalid Contact Number");
+            /* if( !phonePattern.test(phoneNumber))
+            {
+                $("#errorMessage").show();
+                $("#errorMessage").text("Invalid Contact Number");
+                $("#contactNumber").select();
+                $("#contactNumber").css("border", "2px solid red");
+            }
+            else
+            {
+                $("#errorMessage").hide();
+                $("#contactNumber").css("border", "1px solid #ced4da");
+            } */
+        });
+
+        $("#contactNumber").focus((e)=>
+        {
+            $("#contactNumber").select();
+        });
+
+        // Contact Message Events
+        $("#contactMessage").blur((e)=>
+        {
+            validateInput("#contactMessage",( $("#contactMessage").val().length < 2 ),"Contact Message Too Short");
+           /*  if( $("#contactMessage").val().length < 2 )
+            {
+                $("#errorMessage").show();
+                $("#errorMessage").text("Contact Message Too Short");
+                $("#contactMessage").select();
+                $("#contactMessage").css("border", "2px solid red");
+            }
+            else
+            {
+                $("#errorMessage").hide();
+                $("#contactMessage").css("border", "1px solid #ced4da");
+            } */
+        });
+
+        $("#contactMessage").focus((e)=>
+        {
+            $("#contactMessage").select();
         });
 
 
-        $("#submitButton").click((e)=>
+        $("#contactForm").submit  ((e)=>
         {
-            e.preventDefault();
+            if(document.getElementById("contactForm").checkValidity() == false)
+            {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("form not valid");
+            }
+
+            
             let contactName = $("#contactName").val();
             let emailAddress = $("#emailAddress").val();
             let contactNumber = $("#contactNumber").val();
