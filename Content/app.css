@@ -51,3 +51,8 @@
     border-radius: .4em;
     width: 100%;
 }
+
+#logout
+{
+    display: none;
+}

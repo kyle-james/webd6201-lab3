@@ -78,11 +78,25 @@ let app;
     function DisplayHomePageContent()
     {
         document.getElementById("home").className = "nav-item active";
-        $("button").click(()=>{
+        /* $("button").click(()=>{
             location.href = "projects.html";
-        });
+        }); */
 
         document.title = "WEBD6201 - Home";
+
+        let progressbar = $( "#progressBar" ).progressbar({
+            value: 37
+          });
+
+        console.log(progressbar);
+
+        $("#projectsButton").click(function(){
+            $(this).fadeOut(3000, "linear", ()=>{
+                $(this).fadeIn(1000, "linear", ()=>{
+                    location.href = "projects.html";
+                });
+            });
+        });
     }
 
     function DisplayProductsContent()
@@ -227,6 +241,18 @@ let app;
     function DisplayLoginContent()
     {
         document.title = "WEBD6201 - Login";
+
+        $("#loginForm").submit  ((e)=>
+        {
+           
+            e.preventDefault();
+            e.stopPropagation();
+            $("#loginForm")[0].reset();
+            $("#login").hide();
+            $("#logout").show();
+
+        });
+
     }
 
     function DisplayRegisterContent()
