@@ -9,6 +9,18 @@ class Contact
     }
 }
 
+class Item
+{
+    constructor(productID, productName, developer, description, price)
+    {
+        this.productID = productID;
+        this.productName = productName;
+        this.developer = developer;
+        this.description = description;
+        this.price = price;
+    }
+}
+
 
 
 
@@ -102,11 +114,44 @@ let app;
     function DisplayProductsContent()
     {
         document.title = "WEBD6201 - Products";
+        let products = [];
+
+        // 1. CREATE A TRY / CATCH FOR EXCEPTION HANDLING
+        try {
+            // 2. INSTANTIATE A NEW XHR OBJECT
+            let XHR = new XMLHttpRequest();
+
+            // 3. ADD AN EVENT LISTENER FOR "READSTATECHANGE"
+            XHR.addEventListener("readystatechange", function(){
+                if((XHR.readyState === 4) && (XHR.status === 200))
+                {
+                    // 6. GET A RESPONSE FROM THE SERVER
+                    let data = JSON.parse(XHR.responseText);
+                    
+                    data.products.forEach(item => {
+                        products.push(new Item(item.productID, item.productName, item.developer, item.description, item.price));
+                    });
+
+                    
+                }
+            });
+        
+            // 4. OPEN A CHANNEL - MAKE A REQUEST WITH THE APPROPRIATE URL
+             XHR.open("GET","./data/products.json",true);
+
+             // 5. SEND THE REQUEST TO THE SERVER
+             XHR.send();
+        } catch (error) {
+            console.log("Error: " + error);
+        }
+
+        
     }
 
     function DisplayServicesContent()
     {
         document.title = "WEBD6201 - Services";
+
     }
 
     function DisplayAboutContent()
