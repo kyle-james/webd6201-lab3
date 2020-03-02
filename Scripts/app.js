@@ -132,6 +132,7 @@ let app;
                         products.push(new Item(item.productID, item.productName, item.developer, item.description, item.price));
                     });
 
+                    // 7. CREATE NEW ELEMENTS AND INJECT THEM AND THE DATA ONTO THE PAGE
                     
                 }
             });
