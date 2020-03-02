@@ -21,6 +21,13 @@
             "developer": "George Lucas",
             "description": "In a Galaxy far, far away",
             "price": 15.99
+        },
+        {
+            "productID": "A4",
+            "productName": "I am not okay with this",
+            "developer": "Netflix",
+            "description": "A weird show about a girl with super powers",
+            "price": 0.99
         }
     ]
 }

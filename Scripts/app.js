@@ -134,6 +134,30 @@ let app;
 
                     // 7. CREATE NEW ELEMENTS AND INJECT THEM AND THE DATA ONTO THE PAGE
                     
+                    let productsBody = document.getElementById("productsBody");
+
+                    for (let index = 0; index < products.length; index++) {
+                        
+                        let newRow = document.createElement("tr");
+
+                        // make use of a template string
+                        let newItem = 
+                        `
+                        <th scope="row">${index + 1}</th>
+                        <td>${products[index].productID}</td>
+                        <td>${products[index].productName}</td>
+                        <td>${products[index].developer}</td>
+                        <td>${products[index].description}</td>
+                        <td>${products[index].price}</td>
+                        `
+
+                        newRow.innerHTML = newItem;
+
+                        productsBody.appendChild(newRow);
+                    }
+
+                    
+
                 }
             });
         
