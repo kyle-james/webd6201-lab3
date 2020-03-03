@@ -55,9 +55,22 @@ let app;
        DisplayHomePageContent();
     }
 
-    function LoadPageContent(pageName, targetElement, filePath )
+    /**
+     * This function injects content into the targetElement's container
+     * 
+     * The pageName parameter is optional.
+     * The async parameter has a default setting of true and is optional
+     *
+     * @param {string} targetElement
+     * @param {string} filePath
+     * @param {function} [callback]
+     * @param {string} [pageName]
+     * @param {boolean} [async=true]
+     * @returns {void}
+     */
+    function LoadPageContent(targetElement, filePath, callback, pageName, async=true)
     {
-        let mainHeader = document.getElementById(targetElement);
+        let container = document.getElementById(targetElement);
 
         // Step 1 - wrap everything in a try / catch
         try {
@@ -69,17 +82,26 @@ let app;
              if((XHR.readyState === 4) && (XHR.status === 200))
              {
                  // Step 6 - do something with the data
-                 let navbar =  XHR.responseText;
+                 let content =  XHR.responseText;
  
-                 mainHeader.innerHTML = navbar;
+                 container.innerHTML = content;
  
-                 document.getElementById(pageName).className = "nav-item active";
+                if(pageName)
+                {
+                    document.getElementById(pageName).className = "nav-item active";
+                }
+
+                if(callback)
+                {
+                    callback();
+                }
+                
              }
  
             });
  
             // Step 4. - code your request
-            XHR.open("GET",filePath, true);
+            XHR.open("GET",filePath, async);
  
             // Step 5 - send the request to the server
             XHR.send();
@@ -89,16 +111,57 @@ let app;
         }
     }
 
+    function activateNavbar()
+    {
+        let navLinks = [];
+        let callbacks = [];
+
+        let ul = document.getElementsByTagName("ul")[0];
+
+        let children =  ul.children;
+
+        for (const child of children) {
+            navLinks[child.id]  = document.getElementById(child.id);
+             navLinks[child.id].children[0].addEventListener("click", function(){
+                switch(child.id)
+                {
+                    case "home":
+                        LoadPageContent("mainContent", "./Views/home.html");
+                        break;
+                    case "about":
+                        LoadPageContent("mainContent", "./Views/about.html");
+                        break;   
+                    case "products":
+                        LoadPageContent("mainContent", "./Views/products.html");
+                        break;  
+                    case "services":
+                        LoadPageContent("mainContent", "./Views/services.html");
+                        break; 
+                    case "contact":
+                        LoadPageContent("mainContent", "./Views/contact.html");
+                        break; 
+                }
+            }); 
+        }
+        
+        /* for (const link in navLinks) {
+            console.log(navLinks[link].children[0]);
+        } */
+    }
+
     function DisplayHomePageContent()
     {
         document.title = "WEBD6201 - Home";
 
-       LoadPageContent("home","mainHeader","./Views/partials/header.html");
+       LoadPageContent("mainHeader","./Views/partials/header.html", activateNavbar, "home");
 
-       LoadPageContent("home", "mainContent", "./Views/home.html");
+       LoadPageContent("mainContent", "./Views/home.html");
 
-       LoadPageContent("home","mainFooter","./Views/partials/footer.html");
+       LoadPageContent("mainFooter","./Views/partials/footer.html");
      
+       LoadPageContent("scripts","./Views/partials/scripts.html");
+
+       
     }
 
     function DisplayProductsContent()
