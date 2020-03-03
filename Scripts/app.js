@@ -52,63 +52,53 @@ let app;
 
        let pageName = name.substring(1, name.length - 5);
 
-       switch(pageName)
-        {
-            case "index":
-               DisplayHomePageContent();
-                break;
-            case "products":
-                DisplayProductsContent();
-                break;
-            case "services":
-                DisplayServicesContent();
-                break;
-            case "about":
-                DisplayAboutContent();
-                break;
-            case "contact":
-                DisplayContactContent();
-                break;
-            case "projects":
-                DisplayProjectsContent();
-                break;
-            case "login":
-                DisplayLoginContent();
-                break;
-            case "register":
-                DisplayRegisterContent();
-                break;
-            default:
-                console.error("Landed in a page that is not defined");
-                break;
-        }
+       DisplayHomePageContent();
+    }
 
-        // add a class of active to the active link
-        $("#"+pageName).addClass("active");
+    function LoadPageContent(pageName, targetElement, filePath )
+    {
+        let mainHeader = document.getElementById(targetElement);
+
+        // Step 1 - wrap everything in a try / catch
+        try {
+            // Step 2 - instantiate an XHR object
+            let XHR = new XMLHttpRequest();
+ 
+            // Step 3 - attach an event listener
+            XHR.addEventListener("readystatechange", function(){
+             if((XHR.readyState === 4) && (XHR.status === 200))
+             {
+                 // Step 6 - do something with the data
+                 let navbar =  XHR.responseText;
+ 
+                 mainHeader.innerHTML = navbar;
+ 
+                 document.getElementById(pageName).className = "nav-item active";
+             }
+ 
+            });
+ 
+            // Step 4. - code your request
+            XHR.open("GET",filePath, true);
+ 
+            // Step 5 - send the request to the server
+            XHR.send();
+ 
+        } catch (error) {
+            
+        }
     }
 
     function DisplayHomePageContent()
     {
-        document.getElementById("home").className = "nav-item active";
-        /* $("button").click(()=>{
-            location.href = "projects.html";
-        }); */
-
         document.title = "WEBD6201 - Home";
 
-        let progressbar = $( "#progressBar" ).progressbar({
-            value: 37
-          });
+       LoadPageContent("home","mainHeader","./Views/partials/header.html");
 
-        console.log(progressbar);
+       LoadPageContent("home", "mainContent", "./Views/home.html");
 
-        $("#projectsButton").click(function(){
-            $(this).fadeOut(3000, "linear", ()=>{
-                $(this).fadeIn(1000, "linear", ()=>{
-                    location.href = "projects.html";
-                });
-            });
-        });
+       LoadPageContent("home","mainFooter","./Views/partials/footer.html");
+     
     }
 
     function DisplayProductsContent()
