@@ -126,27 +126,28 @@ let app;
                 switch(child.id)
                 {
                     case "home":
-                        LoadPageContent("mainContent", "./Views/home.html");
+                        LoadPageContent("mainContent", "./Views/content/home.html");
                         break;
-                    case "about":
-                        LoadPageContent("mainContent", "./Views/about.html");
-                        break;   
+                      
                     case "products":
-                        LoadPageContent("mainContent", "./Views/products.html");
+                        LoadPageContent("mainContent", "./Views/content/products.html");
                         break;  
                     case "services":
-                        LoadPageContent("mainContent", "./Views/services.html");
+                        LoadPageContent("mainContent", "./Views/content/services.html");
+                        break; 
+                    case "about":
+                        LoadPageContent("mainContent", "./Views/content/about.html");
                         break; 
                     case "contact":
-                        LoadPageContent("mainContent", "./Views/contact.html");
+                        LoadPageContent("mainContent", "./Views/content/contact.html");
                         break; 
+                    case "login":
+                        LoadPageContent("mainContent", "./Views/content/login.html");
+                        break;
                 }
             }); 
         }
         
-        /* for (const link in navLinks) {
-            console.log(navLinks[link].children[0]);
-        } */
     }
 
     function DisplayHomePageContent()
@@ -155,7 +156,7 @@ let app;
 
        LoadPageContent("mainHeader","./Views/partials/header.html", activateNavbar, "home");
 
-       LoadPageContent("mainContent", "./Views/home.html");
+       LoadPageContent("mainContent", "./Views/content/home.html");
 
        LoadPageContent("mainFooter","./Views/partials/footer.html");
      
