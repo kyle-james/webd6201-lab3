@@ -130,19 +130,19 @@ let app;
                         break;
                       
                     case "products":
-                        LoadPageContent("mainContent", "./Views/content/products.html");
+                        LoadPageContent("mainContent", "./Views/content/products.html", DisplayProductsContent);
                         break;  
                     case "services":
-                        LoadPageContent("mainContent", "./Views/content/services.html");
+                        LoadPageContent("mainContent", "./Views/content/services.html",DisplayServicesContent);
                         break; 
                     case "about":
-                        LoadPageContent("mainContent", "./Views/content/about.html");
+                        LoadPageContent("mainContent", "./Views/content/about.html", DisplayAboutContent);
                         break; 
                     case "contact":
-                        LoadPageContent("mainContent", "./Views/content/contact.html");
+                        LoadPageContent("mainContent", "./Views/content/contact.html", DisplayContactContent);
                         break; 
                     case "login":
-                        LoadPageContent("mainContent", "./Views/content/login.html");
+                        LoadPageContent("mainContent", "./Views/content/login.html", DisplayLoginContent);
                         break;
                 }
             }); 
@@ -159,9 +159,6 @@ let app;
        LoadPageContent("mainContent", "./Views/content/home.html");
 
        LoadPageContent("mainFooter","./Views/partials/footer.html");
-     
-       LoadPageContent("scripts","./Views/partials/scripts.html");
-
        
     }
 
