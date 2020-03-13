@@ -128,7 +128,6 @@ let app;
                     case "home":
                         LoadPageContent("mainContent", "./Views/content/home.html");
                         break;
-                      
                     case "products":
                         LoadPageContent("mainContent", "./Views/content/products.html", DisplayProductsContent);
                         break;  
@@ -379,6 +378,55 @@ let app;
     function DisplayRegisterContent()
     {
         document.title = "WEBD6201 - Register";
+    }
+
+    function DisplayTaskList()
+    {
+        document.title = "WEBD6201 - Task List";
+
+        // Task 1 a
+        $("#newTaskButton").on("click", function(){
+            let inputText = $("#taskTextInput").val();
+
+            let newElement = 
+            `
+            <li class="list-group-item" id="task">
+            <span id="taskText">${inputText}</span>
+            <span class="float-right">
+                <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+            </span>
+            <input type="text" class="form-control edit-task editTextInput">
+            </li>
+            `
+            
+            $("#taskList").append(newElement);
+        });
+
+        // Task 1 b
+
+        $("ul").on("click", ".editButton", function(){
+           let editText = $(this).parent().parent().children(".editTextInput");
+           let text = $(this).parent().parent().text();
+           editText.val(text);
+           editText.show();
+           editText.select();
+           editText.keypress(function(event){
+            if(event.keyCode == "13")
+            {
+                editText.hide();
+                $(this).parent().children("#taskText").text(editText.val());
+            }
+           });
+        });
+
+        // Task 1 c
+        $("ul").on("click", ".deleteButton", function(){
+            if(confirm("Are you sure?"))
+            {
+                $(this).closest("li").remove();
+            }    
+        });
     }
 
     /**
