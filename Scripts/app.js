@@ -72,6 +72,7 @@ let app;
     function LoadTaskListContent()
     {
         LoadPageContent("mainContent", "./tasklist.html", DisplayTaskList);
+
     }
     function LoadPageContent(targetElement, filePath, callback, pageName, async=true)
     {
@@ -131,7 +132,7 @@ let app;
                 switch(child.id)
                 {
                     case "home":
-                        LoadPageContent("mainContent", "./Views/content/home.html");
+                        LoadPageContent("mainContent", "./Views/content/home.html", DisplayHomePageContent);
                         break;
                     case "products":
                         LoadPageContent("mainContent", "./Views/content/products.html", DisplayProductsContent);
@@ -164,8 +165,13 @@ let app;
 
        LoadPageContent("mainFooter","./Views/partials/footer.html");
 
-        let buttonTaskList = document.getElementById("mainContent");
-        buttonTaskList.addEventListener("click", function(){LoadTaskListContent()});
+       if(document.title == "WEBD6201 - Home")
+       {
+           $(document).ready(function() {
+                $(this).on("click", '#taskListButton', LoadTaskListContent);
+           });
+       
+       }
     }
 
     function DisplayProductsContent()
