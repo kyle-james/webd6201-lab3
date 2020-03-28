@@ -77,7 +77,8 @@ let app;
 
     function LoadTaskListContent()
     {
-        
+        //this is to make things easier with jQuery
+
         LoadPageContent("mainContent", "./tasklist.html", DisplayTaskList);
 
     }
@@ -139,6 +140,8 @@ let app;
                 switch(child.id)
                 {
                     case "home":
+                         //I added the last variable to make things work correctly
+
                         LoadPageContent("mainContent", "./Views/content/home.html", DisplayHomePageContent);
                         break;
                     case "products":
@@ -172,10 +175,12 @@ let app;
 
        LoadPageContent("mainFooter","./Views/partials/footer.html");
 
+        //this only executes if the title is 'Home'
        if(document.title == "WEBD6201 - Home")
        {
            $(document).ready(function() {
-                     $(this).on("click", '#taskListButton', LoadTaskListContent);
+                //this executes 'LoadTaskListContent' when the task list button is clicked
+                  $(this).on("click", '#taskListButton', LoadTaskListContent);
            });
        
        }
