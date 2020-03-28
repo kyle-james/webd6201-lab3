@@ -175,7 +175,7 @@ let app;
        if(document.title == "WEBD6201 - Home")
        {
            $(document).ready(function() {
-                 $(this).on("click", '#taskListButton', LoadTaskListContent);
+                     $(this).on("click", '#taskListButton', LoadTaskListContent);
            });
        
        }
