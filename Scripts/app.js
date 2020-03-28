@@ -68,6 +68,11 @@ let app;
      * @param {boolean} [async=true]
      * @returns {void}
      */
+
+    function LoadTaskListContent()
+    {
+        LoadPageContent("mainContent", "./tasklist.html", DisplayTaskList);
+    }
     function LoadPageContent(targetElement, filePath, callback, pageName, async=true)
     {
         let container = document.getElementById(targetElement);
@@ -158,7 +163,9 @@ let app;
        LoadPageContent("mainContent", "./Views/content/home.html");
 
        LoadPageContent("mainFooter","./Views/partials/footer.html");
-       
+
+        let buttonTaskList = document.getElementById("mainContent");
+        buttonTaskList.addEventListener("click", function(){LoadTaskListContent()});
     }
 
     function DisplayProductsContent()
@@ -383,7 +390,6 @@ let app;
     function DisplayTaskList()
     {
         document.title = "WEBD6201 - Task List";
-
         // Task 1 a
         $("#newTaskButton").on("click", function(){
             let inputText = $("#taskTextInput").val();
