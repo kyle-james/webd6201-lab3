@@ -1,3 +1,9 @@
+/*
+Kyle James
+100704048
+Mar. 28, 2020
+*/
+
 class Contact
 {
     constructor(contactName = "", emailAddress = "", contactNumber = "", contactMessage = "")
@@ -71,6 +77,7 @@ let app;
 
     function LoadTaskListContent()
     {
+        
         LoadPageContent("mainContent", "./tasklist.html", DisplayTaskList);
 
     }
@@ -168,7 +175,7 @@ let app;
        if(document.title == "WEBD6201 - Home")
        {
            $(document).ready(function() {
-                $(this).on("click", '#taskListButton', LoadTaskListContent);
+                 $(this).on("click", '#taskListButton', LoadTaskListContent);
            });
        
        }
